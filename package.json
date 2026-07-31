@@ -11,15 +11,29 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-react": "^7.18.0",
+    "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.5",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/ui": "^4.1.10",
+    "jsdom": "^30.0.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "rollup": "^3.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "@rollup/plugin-babel": "^6.0.0",
-    "@babel/core": "^7.20.0",
-    "@babel/preset-react": "^7.18.0"
+    "vitest": "^4.1.10"
   },
   "peerDependencies": {
     "react": ">=15.0.0",

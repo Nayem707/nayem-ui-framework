@@ -247,19 +247,68 @@ npm install
 |---------|-------------|
 | `npm run dev` | Watch mode (Rollup) |
 | `npm run build` | Production build to `dist/` |
+| `npm test` | Run all tests once |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Run tests with coverage report |
+| `npm run test:ui` | Run tests with Vitest UI |
 
 ### Project structure
 
 ```
 lumynar-ui/
 ├── src/
-│   ├── components/ui/   # Component source
+│   ├── components/ui/   # Component source + co-located tests
 │   ├── utils/           # Shared utilities
 │   └── index.js         # Public exports
+├── coverage/            # Coverage reports (generated)
 ├── dist/                # Build output (generated)
+├── setupTests.js        # Test environment setup
+├── vitest.config.js
 ├── rollup.config.js
 └── package.json
 ```
+
+---
+
+## Testing
+
+Lumynar UI uses [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/react) for unit and integration tests.
+
+### Commands
+
+```bash
+# Run all tests once
+npm test
+
+# Watch mode during development
+npm run test:watch
+
+# Generate coverage report (target: 90%+)
+npm run test:coverage
+
+# Interactive Vitest UI
+npm run test:ui
+```
+
+Coverage reports are written to the `coverage/` directory.
+
+### Philosophy
+
+- **Test behavior, not implementation** — queries use roles, labels, and visible text.
+- **User-centric interactions** — clicks and typing go through `@testing-library/user-event`.
+- **No unnecessary mocks** — only timers and module boundaries are mocked when required.
+- **Co-located tests** — each exported component has a `*.test.jsx` file beside its source.
+
+### What is tested
+
+| Area | Coverage |
+|------|----------|
+| Rendering & default props | All 19 exported components |
+| Variants, sizes, and states | Button, Badge, Alert, Toast, etc. |
+| User interactions | Click, type, submit, close handlers |
+| Accessibility basics | Semantic HTML, labels, disabled state |
+| Edge cases | Custom `className`, `style`, long text, empty props |
+| Utilities | `reactCompat` helper functions |
 
 ---
 
@@ -270,7 +319,7 @@ lumynar-ui/
 - [ ] Fix known issues in unreleased components (modals, tables, tabs)
 - [ ] Align documentation with component APIs
 - [ ] Export audit — stabilize public API surface
-- [ ] Basic unit tests for exported components
+- [x] Basic unit tests for exported components
 
 ### v0.2
 
@@ -281,7 +330,7 @@ lumynar-ui/
 
 ### v1.0
 
-- [ ] Comprehensive test suite
+- [x] Comprehensive test suite for exported components
 - [ ] Enhanced accessibility (ARIA, focus management, keyboard support)
 - [ ] Dark mode support
 - [ ] Optional standalone CSS build for non-Tailwind users
