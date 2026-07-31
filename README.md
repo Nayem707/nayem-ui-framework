@@ -2,19 +2,17 @@
   <img src="./src/assets/header.svg" alt="Lumynar UI" width="100%" />
 </div>
 
-# Lumynar UI
-
 [![npm version](https://badge.fury.io/js/lumynar-ui.svg)](https://www.npmjs.com/package/lumynar-ui)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![React](https://img.shields.io/badge/React-16.8%2B%20%E2%80%93%2019%2B-blue.svg)](https://react.dev/)
 
 A lightweight React component library with 19 exported components, Tailwind-based styling, and no runtime npm dependencies beyond React.
 
-| | |
-|---|---|
-| **npm package** | [`lumynar-ui`](https://www.npmjs.com/package/lumynar-ui) |
-| **Repository** | [`nayem-ui-framework`](https://github.com/Nayem707/nayem-ui-framework) |
-| **Documentation** | [docs/README.md](./docs/README.md) |
+|                   |                                                                        |
+| ----------------- | ---------------------------------------------------------------------- |
+| **npm package**   | [`lumynar-ui`](https://www.npmjs.com/package/lumynar-ui)               |
+| **Repository**    | [`nayem-ui-framework`](https://github.com/Nayem707/nayem-ui-framework) |
+| **Documentation** | [docs/README.md](./docs/README.md)                                     |
 
 > Documentation website, live playground, and Storybook — **Coming Soon**
 
@@ -33,9 +31,9 @@ function App() {
   return (
     <Container>
       <Card>
-        <InputField placeholder="Enter your name…" />
+        <InputField placeholder='Enter your name…' />
         <Button onClick={() => alert('Hello!')}>Click me</Button>
-        <Alert type="success" message="Components are working." />
+        <Alert type='success' message='Components are working.' />
       </Card>
     </Container>
   );
@@ -48,17 +46,17 @@ function App() {
 
 ## Documentation
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](./docs/getting-started.md) | Installation, Tailwind setup, first component |
-| [Architecture](./docs/architecture.md) | Project structure, build pipeline, module design |
-| [Components](./docs/components.md) | Full API reference for all 19 exported components |
-| [Customization](./docs/customization.md) | `className`, `style`, and Tailwind integration |
-| [Compatibility](./docs/compatibility.md) | Supported React versions and peer dependencies |
-| [Testing](./docs/testing.md) | Running tests, coverage, and testing philosophy |
-| [Troubleshooting](./docs/troubleshooting.md) | Common issues and solutions |
-| [Contributing](./CONTRIBUTING.md) | Development setup and contribution guidelines |
-| [Publishing](./docs/publishing.md) | Local linking and npm release workflow |
+| Guide                                        | Description                                       |
+| -------------------------------------------- | ------------------------------------------------- |
+| [Getting Started](./docs/getting-started.md) | Installation, Tailwind setup, first component     |
+| [Architecture](./docs/architecture.md)       | Project structure, build pipeline, module design  |
+| [Components](./docs/components.md)           | Full API reference for all 19 exported components |
+| [Customization](./docs/customization.md)     | `className`, `style`, and Tailwind integration    |
+| [Compatibility](./docs/compatibility.md)     | Supported React versions and peer dependencies    |
+| [Testing](./docs/testing.md)                 | Running tests, coverage, and testing philosophy   |
+| [Troubleshooting](./docs/troubleshooting.md) | Common issues and solutions                       |
+| [Contributing](./CONTRIBUTING.md)            | Development setup and contribution guidelines     |
+| [Publishing](./docs/publishing.md)           | Local linking and npm release workflow            |
 
 ---
 
@@ -74,15 +72,15 @@ function App() {
 
 ## Component Overview
 
-| Category | Components |
-|----------|------------|
-| Buttons | `Button` |
-| Forms | `InputField`, `Label`, `Checkbox`, `FormWrapper` |
-| Layout | `Card`, `Container`, `Grid`, `Row`, `Column` |
-| Typography | `Heading`, `Paragraph` |
-| Feedback | `Alert`, `Toast`, `Badge`, `Loading`, `Skeleton` |
-| Media | `Avatar`, `Image` |
-| Utilities | `Divider` |
+| Category   | Components                                       |
+| ---------- | ------------------------------------------------ |
+| Buttons    | `Button`                                         |
+| Forms      | `InputField`, `Label`, `Checkbox`, `FormWrapper` |
+| Layout     | `Card`, `Container`, `Grid`, `Row`, `Column`     |
+| Typography | `Heading`, `Paragraph`                           |
+| Feedback   | `Alert`, `Toast`, `Badge`, `Loading`, `Skeleton` |
+| Media      | `Avatar`, `Image`                                |
+| Utilities  | `Divider`                                        |
 
 See the [Components reference](./docs/components.md) for props, variants, and examples.
 
@@ -90,22 +88,22 @@ See the [Components reference](./docs/components.md) for props, variants, and ex
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run build` | Production build to `dist/` |
-| `npm run dev` | Rollup watch mode |
-| `npm test` | Run all tests |
-| `npm run test:coverage` | Tests with coverage report |
+| Command                 | Description                 |
+| ----------------------- | --------------------------- |
+| `npm run build`         | Production build to `dist/` |
+| `npm run dev`           | Rollup watch mode           |
+| `npm test`              | Run all tests               |
+| `npm run test:coverage` | Tests with coverage report  |
 
 ---
 
 ## Roadmap
 
-| Version | Status | Highlights |
-|---------|--------|------------|
-| v0.1 | In progress | Export audit, unreleased component fixes |
-| v0.2 | Planned | TypeScript definitions, Storybook, design tokens |
-| v1.0 | Planned | Enhanced accessibility, dark mode, docs website |
+| Version | Status      | Highlights                                       |
+| ------- | ----------- | ------------------------------------------------ |
+| v0.1    | In progress | Export audit, unreleased component fixes         |
+| v0.2    | Planned     | TypeScript definitions, Storybook, design tokens |
+| v1.0    | Planned     | Enhanced accessibility, dark mode, docs website  |
 
 ---
 
