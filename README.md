@@ -8,112 +8,31 @@
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![React](https://img.shields.io/badge/React-16.8%2B%20%E2%80%93%2019%2B-blue.svg)](https://react.dev/)
 
-A lightweight React component library with a small, focused API. Components are built with utility-class styling and designed to be customized through props, `className`, and inline styles.
+A lightweight React component library with 19 exported components, Tailwind-based styling, and no runtime npm dependencies beyond React.
 
-**Package:** [`lumynar-ui`](https://www.npmjs.com/package/lumynar-ui) · **Repository:** [`nayem-ui-framework`](https://github.com/Nayem707/nayem-ui-framework)
+| | |
+|---|---|
+| **npm package** | [`lumynar-ui`](https://www.npmjs.com/package/lumynar-ui) |
+| **Repository** | [`nayem-ui-framework`](https://github.com/Nayem707/nayem-ui-framework) |
+| **Documentation** | [docs/README.md](./docs/README.md) |
 
-> **Documentation Website** — Coming Soon  
-> **Live Playground** — Coming Soon  
-> **Storybook** — Coming Soon
-
----
-
-## Why Lumynar UI
-
-Lumynar UI is for developers who want a **small set of ready-made React components** without adopting a large design system or heavy runtime.
-
-**Problems it addresses:**
-
-- You need common UI primitives (buttons, inputs, cards, alerts) without writing them from scratch.
-- You already use Tailwind CSS and want components that compose with your existing utility classes.
-- You prefer a library with **no runtime npm dependencies** beyond React itself.
-
-**What makes it different:**
-
-- **Minimal surface area** — 19 exported components, no sprawling component tree.
-- **Customization-first** — every component accepts `className` and most accept `style`.
-- **Small bundle footprint** — source is compiled to CJS and ESM; React is a peer dependency.
-
-Lumynar UI is early-stage (v0.0.x). It is best suited for side projects, prototypes, and teams comfortable contributing fixes upstream.
-
----
-
-## Features
-
-- 19 exported components across forms, layout, typography, feedback, and media
-- Dual build output (CommonJS + ESM)
-- React and React DOM as the only peer dependencies
-- `className` and `style` props for styling overrides
-- Tailwind CSS utility classes baked into component markup
-- Rollup-based build with Babel JSX transform
-
----
-
-## Installation
-
-```bash
-npm install lumynar-ui
-```
-
-```bash
-yarn add lumynar-ui
-```
-
-```bash
-pnpm add lumynar-ui
-```
-
-```bash
-bun add lumynar-ui
-```
-
----
-
-## Requirements
-
-| Requirement | Version | Notes |
-|-------------|---------|-------|
-| **React** | 16.8+ recommended | Components use hooks (`useState`, `useEffect`). React 15 is listed as a peer dependency but is not tested or supported in practice. |
-| **React DOM** | Matching React version | Required peer dependency. |
-| **Tailwind CSS** | v3+ recommended | **Required in your app.** Components use Tailwind utility classes. Lumynar UI does not ship a standalone CSS file. |
-| **Node.js** | 14+ | For local development and building from source. |
-
-### Tailwind setup
-
-Add Lumynar UI to your Tailwind `content` paths so utility classes are included in your build:
-
-```js
-// tailwind.config.js
-module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    './node_modules/lumynar-ui/dist/**/*.{js,jsx}',
-  ],
-  // ...
-};
-```
-
-### Peer dependency warnings
-
-If your package manager reports peer dependency conflicts:
-
-```bash
-npm install lumynar-ui --legacy-peer-deps
-```
+> Documentation website, live playground, and Storybook — **Coming Soon**
 
 ---
 
 ## Quick Start
 
+```bash
+npm install lumynar-ui
+```
+
 ```jsx
-import React from 'react';
 import { Button, InputField, Card, Container, Alert } from 'lumynar-ui';
 
 function App() {
   return (
     <Container>
       <Card>
-        <h1>Welcome to Lumynar UI</h1>
         <InputField placeholder="Enter your name…" />
         <Button onClick={() => alert('Hello!')}>Click me</Button>
         <Alert type="success" message="Components are working." />
@@ -121,258 +40,84 @@ function App() {
     </Container>
   );
 }
-
-export default App;
 ```
+
+> **Requirement:** Tailwind CSS must be configured in your app. See [Getting Started](./docs/getting-started.md).
+
+---
+
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Getting Started](./docs/getting-started.md) | Installation, Tailwind setup, first component |
+| [Architecture](./docs/architecture.md) | Project structure, build pipeline, module design |
+| [Components](./docs/components.md) | Full API reference for all 19 exported components |
+| [Customization](./docs/customization.md) | `className`, `style`, and Tailwind integration |
+| [Compatibility](./docs/compatibility.md) | Supported React versions and peer dependencies |
+| [Testing](./docs/testing.md) | Running tests, coverage, and testing philosophy |
+| [Troubleshooting](./docs/troubleshooting.md) | Common issues and solutions |
+| [Contributing](./CONTRIBUTING.md) | Development setup and contribution guidelines |
+| [Publishing](./docs/publishing.md) | Local linking and npm release workflow |
+
+---
+
+## Features
+
+- 19 exported components — forms, layout, typography, feedback, media
+- Dual build output — CommonJS (`dist/index.cjs.js`) and ESM (`dist/index.esm.js`)
+- Zero runtime dependencies — React and React DOM are peer dependencies only
+- Customization-first — `className` and `style` on every component
+- Tested — 213+ unit tests with 90%+ coverage threshold
 
 ---
 
 ## Component Overview
 
-All components below are exported from the package entry point.
+| Category | Components |
+|----------|------------|
+| Buttons | `Button` |
+| Forms | `InputField`, `Label`, `Checkbox`, `FormWrapper` |
+| Layout | `Card`, `Container`, `Grid`, `Row`, `Column` |
+| Typography | `Heading`, `Paragraph` |
+| Feedback | `Alert`, `Toast`, `Badge`, `Loading`, `Skeleton` |
+| Media | `Avatar`, `Image` |
+| Utilities | `Divider` |
 
-| Category | Components | Description |
-|----------|------------|-------------|
-| **Buttons** | `Button` | Button with `variant` (`primary`, `secondary`, `danger`) and `size` (`sm`, `md`, `lg`) |
-| **Forms** | `InputField`, `Label`, `Checkbox`, `FormWrapper` | Text input, label, checkbox, and form container |
-| **Layout** | `Card`, `Container`, `Grid`, `Row`, `Column` | Card, responsive container, and grid/row/column helpers |
-| **Typography** | `Heading`, `Paragraph` | Semantic heading (`level` 1–6) and paragraph text |
-| **Feedback** | `Alert`, `Toast`, `Badge`, `Loading`, `Skeleton` | Alerts, toasts, badges, spinners, and skeleton placeholders |
-| **Media** | `Avatar`, `Image` | Profile avatar and enhanced image |
-| **Utilities** | `Divider` | Horizontal or vertical content separator |
-
-### Example
-
-```jsx
-import { Button, InputField, Card, Container, Alert, Badge } from 'lumynar-ui';
-
-function ContactForm() {
-  return (
-    <Container>
-      <Card>
-        <Badge variant="success">New</Badge>
-        <h2>Contact</h2>
-        <InputField placeholder="Email" type="email" />
-        <Button variant="primary" size="lg">Subscribe</Button>
-        <Alert type="info" message="We'll never share your email." />
-      </Card>
-    </Container>
-  );
-}
-```
+See the [Components reference](./docs/components.md) for props, variants, and examples.
 
 ---
 
-## Customization
-
-### `className`
-
-Pass Tailwind or custom classes to override or extend default styles.
-
-```jsx
-<Button className="bg-purple-600 hover:bg-purple-700 rounded-full">
-  Custom Button
-</Button>
-```
-
-When `className` is provided on `Button`, default variant/size classes are not applied — you control styling entirely.
-
-### `style`
-
-Pass inline styles for one-off overrides.
-
-```jsx
-<Button
-  variant="primary"
-  style={{ backgroundColor: '#ff6b6b', padding: '15px 30px' }}
->
-  Inline Styled
-</Button>
-```
-
-### Tailwind integration
-
-Components are authored with Tailwind utility classes. The recommended approach is to configure Tailwind in your project (see [Requirements](#requirements)) and use `className` to align components with your design tokens.
-
----
-
-## Accessibility
-
-Accessibility support is **limited** in the current release. Components do not yet include comprehensive ARIA attributes, focus management, or keyboard interaction patterns.
-
-| Area | Status |
-|------|--------|
-| Modal focus trapping | Not implemented |
-| Toast live regions (`role="alert"`) | Not implemented |
-| Form error associations (`aria-describedby`) | Partial — `Label` supports `htmlFor` |
-| Keyboard navigation for interactive widgets | Not implemented |
-
-Enhanced accessibility is planned for a future release. If accessibility is critical for your project, audit components before use or contribute improvements via [CONTRIBUTING.md](./CONTRIBUTING.md).
-
----
-
-## React Compatibility
-
-| React version | Support level | Notes |
-|---------------|---------------|-------|
-| **19.x** | Supported | Tested target |
-| **18.x** | Supported | Tested target |
-| **17.x** | Supported | Should work |
-| **16.8 – 16.x** | Supported | Minimum practical version (hooks required) |
-| **16.0 – 16.7** | Not supported | Components rely on hooks |
-| **15.x** | Not supported | Listed in peer deps but not compatible with current source |
-
-The package ships as compiled JS (CJS + ESM) with React externalized. A compatibility utility layer exists in source but is not actively used by individual components.
-
----
-
-## Development
-
-### Prerequisites
-
-- Node.js 14+
-- npm, yarn, pnpm, or bun
-
-### Setup
-
-```bash
-git clone https://github.com/Nayem707/nayem-ui-framework.git
-cd nayem-ui-framework
-npm install
-```
-
-### Scripts
+## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Watch mode (Rollup) |
 | `npm run build` | Production build to `dist/` |
-| `npm test` | Run all tests once |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:coverage` | Run tests with coverage report |
-| `npm run test:ui` | Run tests with Vitest UI |
-
-### Project structure
-
-```
-lumynar-ui/
-├── src/
-│   ├── components/ui/   # Component source + co-located tests
-│   ├── utils/           # Shared utilities
-│   └── index.js         # Public exports
-├── coverage/            # Coverage reports (generated)
-├── dist/                # Build output (generated)
-├── setupTests.js        # Test environment setup
-├── vitest.config.js
-├── rollup.config.js
-└── package.json
-```
-
----
-
-## Testing
-
-Lumynar UI uses [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/react) for unit and integration tests.
-
-### Commands
-
-```bash
-# Run all tests once
-npm test
-
-# Watch mode during development
-npm run test:watch
-
-# Generate coverage report (target: 90%+)
-npm run test:coverage
-
-# Interactive Vitest UI
-npm run test:ui
-```
-
-Coverage reports are written to the `coverage/` directory.
-
-### Philosophy
-
-- **Test behavior, not implementation** — queries use roles, labels, and visible text.
-- **User-centric interactions** — clicks and typing go through `@testing-library/user-event`.
-- **No unnecessary mocks** — only timers and module boundaries are mocked when required.
-- **Co-located tests** — each exported component has a `*.test.jsx` file beside its source.
-
-### What is tested
-
-| Area | Coverage |
-|------|----------|
-| Rendering & default props | All 19 exported components |
-| Variants, sizes, and states | Button, Badge, Alert, Toast, etc. |
-| User interactions | Click, type, submit, close handlers |
-| Accessibility basics | Semantic HTML, labels, disabled state |
-| Edge cases | Custom `className`, `style`, long text, empty props |
-| Utilities | `reactCompat` helper functions |
+| `npm run dev` | Rollup watch mode |
+| `npm test` | Run all tests |
+| `npm run test:coverage` | Tests with coverage report |
 
 ---
 
 ## Roadmap
 
-### v0.1
-
-- [ ] Fix known issues in unreleased components (modals, tables, tabs)
-- [ ] Align documentation with component APIs
-- [ ] Export audit — stabilize public API surface
-- [x] Basic unit tests for exported components
-
-### v0.2
-
-- [ ] TypeScript definitions (`.d.ts`)
-- [ ] Storybook documentation
-- [ ] Shared design tokens / theme configuration
-- [ ] `exports` field for improved tree-shaking
-
-### v1.0
-
-- [x] Comprehensive test suite for exported components
-- [ ] Enhanced accessibility (ARIA, focus management, keyboard support)
-- [ ] Dark mode support
-- [ ] Optional standalone CSS build for non-Tailwind users
-- [ ] Documentation website and live playground
-
----
-
-## Contributing
-
-Contributions are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes
-4. Push and open a Pull Request
+| Version | Status | Highlights |
+|---------|--------|------------|
+| v0.1 | In progress | Export audit, unreleased component fixes |
+| v0.2 | Planned | TypeScript definitions, Storybook, design tokens |
+| v1.0 | Planned | Enhanced accessibility, dark mode, docs website |
 
 ---
 
 ## License
 
-This project is licensed under the [ISC License](./LICENSE).
+[ISC License](./LICENSE)
 
 ---
 
 ## Author
 
-**Nayem Islam**
-
-| | |
-|---|---|
-| GitHub | [@Nayem707](https://github.com/Nayem707) |
-| npm | [nayemislam](https://www.npmjs.com/~nayemislam) |
-| Portfolio | [nayem-490.vercel.app](https://nayem-490.vercel.app) |
-| Email | [inaeem707@gmail.com](mailto:inaeem707@gmail.com) |
-
----
-
-## Support
-
-1. Read this README and [docs/](./docs/)
-2. Search [existing issues](https://github.com/Nayem707/nayem-ui-framework/issues)
-3. Open a [new issue](https://github.com/Nayem707/nayem-ui-framework/issues/new) if needed
+**Nayem Islam** — [@Nayem707](https://github.com/Nayem707) · [npm](https://www.npmjs.com/~nayemislam) · [inaeem707@gmail.com](mailto:inaeem707@gmail.com)
 
 ---
 

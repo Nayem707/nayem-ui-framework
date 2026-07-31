@@ -1,218 +1,251 @@
 # Contributing to Lumynar UI
 
-Thank you for your interest in contributing to Lumynar UI! We welcome all contributions that help improve the library.
+Thank you for your interest in contributing. This guide covers setup, standards, and the pull request process.
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
+## Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
-- Git
+| Tool | Version |
+|------|---------|
+| Node.js | 14+ |
+| npm, yarn, pnpm, or bun | Latest stable |
+| Git | Any recent version |
 
-### Setting up the Development Environment
+---
 
-1. **Fork the repository**
+## Development setup
 
-   - Click the "Fork" button at the top right of the repository page
+### 1. Fork and clone
 
-2. **Clone your fork**
+```bash
+git clone https://github.com/YOUR_USERNAME/nayem-ui-framework.git
+cd nayem-ui-framework
+```
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/nayem-ui-framework.git
-   cd nayem-ui-framework
-   ```
+### 2. Add upstream remote
 
-3. **Add upstream remote**
+```bash
+git remote add upstream https://github.com/Nayem707/nayem-ui-framework.git
+```
 
-   ```bash
-   git remote add upstream https://github.com/Nayem707/nayem-ui-framework.git
-   ```
+### 3. Install dependencies
 
-4. **Install dependencies**
+```bash
+npm install
+```
 
-   ```bash
-   npm install
-   ```
+### 4. Start development
 
-5. **Start development mode**
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev      # Rollup watch mode
+npm run test:watch  # Tests in watch mode
+```
 
-## 🎯 How to Contribute
+---
 
-### Reporting Issues
+## How to contribute
 
-Before creating a new issue, please:
+### Report a bug
 
-- Search existing issues to avoid duplicates
-- Use the issue template if available
-- Provide as much detail as possible
+1. Search [existing issues](https://github.com/Nayem707/nayem-ui-framework/issues) for duplicates
+2. Open a new issue with:
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - React version, Node version, and package manager
 
-### Suggesting Features
+### Suggest a feature
 
-We love feature suggestions! Please:
+1. Check the [roadmap](../README.md#roadmap) and existing issues
+2. Open an issue describing the use case and proposed API
 
-- Check if the feature already exists or is planned
-- Create an issue with the "feature request" label
-- Describe the use case and expected behavior
+### Submit code
 
-### Code Contributions
+1. Create a branch from `main`:
 
-1. **Create a new branch**
+```bash
+git checkout -b feat/my-feature
+# or
+git checkout -b fix/my-bug-fix
+```
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   # or
-   git checkout -b fix/your-bug-fix
-   ```
+2. Make your changes following the [coding standards](#coding-standards) below
 
-2. **Make your changes**
+3. Run checks:
 
-   - Follow the coding standards (see below)
-   - Write clear, concise commit messages
-   - Add tests if applicable
+```bash
+npm test
+npm run test:coverage
+npm run build
+```
 
-3. **Test your changes**
+4. Commit using [Conventional Commits](#commit-messages):
 
-   ```bash
-   npm run build
-   # Test the build output
-   ```
+```bash
+git commit -m "feat: add Tooltip component"
+```
 
-4. **Commit your changes**
+5. Push and open a Pull Request:
 
-   ```bash
-   git add .
-   git commit -m "feat: add new component X"
-   ```
+```bash
+git push origin feat/my-feature
+```
 
-5. **Push to your fork**
+---
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+## Coding standards
 
-6. **Create a Pull Request**
-   - Use a clear title and description
-   - Reference any related issues
-   - Include screenshots if UI changes are involved
+### Components
 
-## 📝 Coding Standards
+| Rule | Detail |
+|------|--------|
+| Functional components | Use function components with hooks |
+| Props | Destructure with defaults; spread `...rest` to the root element |
+| Styling | Tailwind utility classes via class maps — not inline `style` defaults |
+| `className` | Accept and append to default classes on every component |
+| File location | `src/components/ui/{category}/{ComponentName}.jsx` |
+| Tests | Co-located `{ComponentName}.test.jsx` beside the component |
+| Exports | Add new public components to `src/index.js` |
 
-### JavaScript/JSX
-
-- Use ES6+ syntax
-- Follow React best practices
-- Use functional components with hooks
-- Keep components simple and focused
-
-### Component Structure
+### Component template
 
 ```jsx
 import React from 'react';
 
-export const ComponentName = ({ prop1, prop2, ...props }) => {
-  // Component logic here
+const MyComponent = ({
+  children,
+  variant = 'default',
+  className = '',
+  ...rest
+}) => {
+  const variants = {
+    default: 'bg-white text-gray-900',
+    primary: 'bg-blue-500 text-white',
+  };
 
   return (
-    <element
-      {...props}
-      style={{
-        // Default styles
-        ...defaultStyles,
-        // Allow style overrides
-        ...props.style,
-      }}
+    <div
+      className={`${variants[variant]} ${className}`}
+      {...rest}
     >
-      {/* Component content */}
-    </element>
+      {children}
+    </div>
   );
 };
 
-export default ComponentName;
+export default MyComponent;
 ```
 
-### Styling Guidelines
-
-- Use inline styles for component defaults
-- Allow style prop overrides
-- Keep styles minimal and focused
-- Ensure responsive design principles
-
-### File Organization
+### File organization
 
 ```
 src/
-├── components/
-│   ├── ComponentName/
-│   │   ├── index.js
-│   │   └── ComponentName.jsx
-│   └── index.js (export all components)
-└── index.js (main entry point)
+├── index.js                    # Public exports only
+├── utils/
+│   └── reactCompat.js
+└── components/ui/
+    ├── buttons/
+    │   ├── Buttons.jsx
+    │   └── Buttons.test.jsx
+    ├── forms/
+    ├── layouts/
+    ├── typography/
+    ├── notifications/
+    ├── Media/
+    └── Utilities/
 ```
 
-## 🔍 Code Review Process
+> Only components exported from `src/index.js` are part of the public API.
 
-1. All code changes must be submitted via Pull Request
-2. At least one maintainer must review and approve the PR
-3. All tests must pass
-4. Code must follow the established patterns and standards
-5. Documentation must be updated if applicable
+---
 
-## 📋 Commit Message Guidelines
+## Testing requirements
 
-We follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+All contributions that modify or add components must include tests.
 
-- `feat:` new features
-- `fix:` bug fixes
-- `docs:` documentation changes
-- `style:` code style changes (formatting, etc.)
-- `refactor:` code refactoring
-- `test:` adding or updating tests
-- `chore:` maintenance tasks
+| Requirement | Detail |
+|-------------|--------|
+| Framework | Vitest + React Testing Library |
+| Location | Co-located `*.test.jsx` files |
+| Coverage | Must not drop below 90% threshold |
+| Style | Test behavior via roles, labels, and visible text |
+
+See [docs/testing.md](./docs/testing.md) for full testing guide.
+
+---
+
+## Pull request process
+
+1. All changes go through a Pull Request
+2. PR title follows Conventional Commits format
+3. `npm test` and `npm run build` must pass
+4. New components require tests and documentation updates in `docs/components.md`
+5. Breaking API changes require a major version bump discussion
+
+### PR checklist
+
+- [ ] Tests pass (`npm test`)
+- [ ] Coverage threshold met (`npm run test:coverage`)
+- [ ] Build succeeds (`npm run build`)
+- [ ] Documentation updated if APIs changed
+- [ ] No imports from internal paths exposed to consumers
+
+---
+
+## Commit messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+| Prefix | Use for |
+|--------|---------|
+| `feat:` | New features or components |
+| `fix:` | Bug fixes |
+| `docs:` | Documentation only |
+| `test:` | Adding or updating tests |
+| `refactor:` | Code changes without feature/fix |
+| `chore:` | Maintenance (deps, CI, config) |
 
 Examples:
 
 ```
-feat: add Modal component with accessibility features
-fix: resolve Button hover state issue
-docs: update installation instructions
-style: format code according to prettier rules
+feat: add Tooltip component with position variants
+fix: correct Alert type prop in documentation
+test: add edge case tests for Button disabled state
+docs: update getting started guide
 ```
 
-## 🚀 Release Process
+---
 
-1. Version bumps follow [Semantic Versioning](https://semver.org/)
-2. Releases are created from the `main` branch
-3. Release notes are automatically generated from commit messages
-4. NPM packages are published automatically via CI/CD
+## Release process
 
-## 🤔 Questions?
+Maintainers follow [docs/publishing.md](./docs/publishing.md):
 
-If you have any questions about contributing:
+1. Ensure all tests pass on `main`
+2. Bump version with `npm version patch|minor|major`
+3. Publish with `npm publish`
+4. Update `latest` dist-tag if needed
 
-1. Check this contributing guide
-2. Look through existing issues and discussions
-3. Create a new issue with the "question" label
-4. Join our community discussions
+---
 
-## 📜 Code of Conduct
-
-By participating in this project, you agree to abide by our Code of Conduct:
+## Code of conduct
 
 - Be respectful and inclusive
 - Welcome newcomers and help them learn
-- Focus on constructive feedback
+- Provide constructive feedback
 - Respect different viewpoints and experiences
 
-## 🙏 Recognition
+---
 
-Contributors are recognized in:
+## Questions?
 
-- The project README
-- Release notes
-- Our contributors page (coming soon)
+1. Read the [documentation](./docs/README.md)
+2. Search [existing issues](https://github.com/Nayem707/nayem-ui-framework/issues)
+3. Open a new issue with the `question` label
 
-Thank you for helping make Lumynar UI better! 🎉
+---
+
+## Recognition
+
+Contributors are acknowledged in release notes and the project README.
+
+Thank you for helping improve Lumynar UI.
